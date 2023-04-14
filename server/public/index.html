@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./vendors/jquery-3.3.1.min.js"></script>
+    <script src="./script/client.js"></script>
+    <title>To-Do-List</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2387/2387635.png"type="image/icon type">
+</head>
+    <body>
+        <header>
+            <h1>To-Do-App</h1>
+        </header>
+        <section>
+                <input id="task-input" placeholder="Task" type="text">
+                <button id="addTask-btn" >AddTask</button>
+        </section>
+        <section>
+            <h3>List of All Tasks</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Completed</th>
+                            <th>Complete</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list" >
+                    </tbody>
+                </table>
+        </section>
+    </body>
+</html>

@@ -1,5 +1,5 @@
 table {
-    width:auto;    
+    width:auto; 
 }
 table, th, td, tbody{
     border: 2px solid black;
@@ -22,4 +22,19 @@ td{
 }
 .task-not-done{
     background-color: red;
+}
+body{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    font-family: cursive;
+}
+h1{
+    color: purple;
+}
+h3{
+    color: purple;
+}
+header, h3{
+    text-align: center;
+    height: 6em;
 }

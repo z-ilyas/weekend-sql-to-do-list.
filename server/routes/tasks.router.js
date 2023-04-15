@@ -46,3 +46,28 @@ tasksRouter.get('/', (req, res) =>{
       res.sendStatus(500);
     })
 })
+
+tasksRouter.put('/:id', (req, res) => {
+
+let theIdToUpdate = req.params.id;
+console.log('here is our id', req.params.id);
+let newstatus = req.body.status;
+console.log('This should always be pending', req.body.status);
+let sqlText = `
+    UPDATE "to-do-list"
+    SET "status"=$1
+    WHERE "id"=$2;
+    `
+let sqlValues = [newstatus, theIdToUpdate];
+  
+pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+    res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+    console.log('PUT /tasks/:id fail:', dbErr);
+    res.sendStatus(500);
+      })
+    
+  
+  })

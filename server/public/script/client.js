@@ -6,7 +6,8 @@ function onReady() {
 console.log('DOM');
 renderAndFetchAllTasks();
 $('#addTasks-btn').on('click', addTask);
-
+$('#task-list').on('click', '.complete-btn', completeTask);
+$('#task-list').on('click', '.delete-btn', deleteTask);
 }
 
 function addTask() {
@@ -49,7 +50,7 @@ $.ajax({
             <tr data-id=${task.id}>
                 <td>${task.tasks}</td>
                 <td>${task.status}</td>
-                <td align="center"><button class="delete-btn">Complete</button></td>
+                <td align="center"><button class="complete-btn">Complete</button></td>
                 <td align="center"><button class="delete-btn">Delete</button></td>
             </tr>
             `)
@@ -57,4 +58,18 @@ $.ajax({
     }  
 })
 }
+function completeTask() {
+let idToUpdate = $(this).parent().parent().data('id');
 
+$.ajax({
+    method: 'PUT',
+    url: `/tasks/${idToUpdate}`,
+    data: {
+      status: 'complete'
+    }
+    }).then(function(response) {
+        renderAndFetchAllTasks();
+    }).catch(function(error) {
+        console.log('uh oh. updateToDigidog fail:', error);
+    })
+}

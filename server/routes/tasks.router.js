@@ -25,7 +25,24 @@ tasksRouter.post('/', (req, res) => {
       res.sendStatus(201);
     })
     .catch((dbErr) => {
-      console.log('POST /task error:', dbErr);
+      console.log('POST /tasks error:', dbErr);
+      res.sendStatus(500);
+    })
+})
+
+tasksRouter.get('/', (req, res) =>{
+    console.log('GET /tasks');
+
+    let sqlText = 'SELECT * FROM "to-do-list";';
+
+    pool.query(sqlText)
+    .then((dbRes) => {
+      console.log('here is the data we are sending', dbRes.rows);
+      let allTasks = dbRes.rows;
+      res.send(allTasks)
+    })
+    .catch((dbErr) => {
+      console.log('SQL query in GET /tasks failed:', dbErr)
       res.sendStatus(500);
     })
 })

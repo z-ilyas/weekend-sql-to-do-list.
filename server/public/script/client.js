@@ -5,6 +5,7 @@ $(document).ready( onReady );
 function onReady() { 
 console.log('DOM');
 $('#addTasks-btn').on('click', addTask);
+renderAndFetchAllTasks();
 
 }
 
@@ -23,15 +24,14 @@ $.ajax({
   })
 }
 
-function renderAndFetchAllTasks(event){
-    event.preventDefault();
-    
+function renderAndFetchAllTasks(){
+
 $.ajax({
     method: 'GET',
     url: '/tasks',
 }).then(function(responseGet) {
-    console.log(responseGet);
-})
+    console.log('Here is the data we are receiving', responseGet);
 
+})
 }
 

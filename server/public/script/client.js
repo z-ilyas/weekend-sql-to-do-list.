@@ -4,8 +4,8 @@ $(document).ready( onReady );
 
 function onReady() { 
 console.log('DOM');
-$('#addTasks-btn').on('click', addTask);
 renderAndFetchAllTasks();
+$('#addTasks-btn').on('click', addTask);
 
 }
 
@@ -31,7 +31,30 @@ $.ajax({
     url: '/tasks',
 }).then(function(responseGet) {
     console.log('Here is the data we are receiving', responseGet);
-
+    $('#task-list').empty();
+    for (task of responseGet){
+        console.log(task)
+        if (task.status === 'complete'){
+            $('#task-list').append(`
+            <tr data-id=${task.id}>
+                <td>${task.tasks}</td>
+                <td>${task.status}</td>
+                <td></td>
+                <td align="center"><button class="delete-btn">Delete</button></td>
+            </tr>
+            `)
+        }
+        else  if (task.status === 'pending') {
+            $('#task-list').append(`
+            <tr data-id=${task.id}>
+                <td>${task.tasks}</td>
+                <td>${task.status}</td>
+                <td align="center"><button class="delete-btn">Complete</button></td>
+                <td align="center"><button class="delete-btn">Delete</button></td>
+            </tr>
+            `)
+        }
+    }  
 })
 }
 

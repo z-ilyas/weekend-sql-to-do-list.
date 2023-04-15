@@ -37,7 +37,7 @@ $.ajax({
         console.log(task)
         if (task.status === 'complete'){
             $('#task-list').append(`
-            <tr data-id=${task.id}>
+            <tr class="task-done" data-id=${task.id}>
                 <td>${task.tasks}</td>
                 <td>${task.status}</td>
                 <td></td>
@@ -47,7 +47,7 @@ $.ajax({
         }
         else  if (task.status === 'pending') {
             $('#task-list').append(`
-            <tr data-id=${task.id}>
+            <tr class="task-not-done" data-id=${task.id}>
                 <td>${task.tasks}</td>
                 <td>${task.status}</td>
                 <td align="center"><button class="complete-btn">Complete</button></td>

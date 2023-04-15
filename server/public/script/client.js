@@ -60,7 +60,7 @@ $.ajax({
 }
 function completeTask() {
 let idToUpdate = $(this).parent().parent().data('id');
-
+console.log('this should show the ids when complete button is clicked', idToUpdate);
 $.ajax({
     method: 'PUT',
     url: `/tasks/${idToUpdate}`,
@@ -73,3 +73,17 @@ $.ajax({
         console.log('uh oh. updateToDigidog fail:', error);
     })
 }
+
+function deleteTask() {
+let idToDelete = $(this).parent().parent().data('id');
+
+$.ajax({
+      method: 'DELETE',
+      url: `/tasks/${idToDelete}`
+    }).then(function(response) {
+        renderAndFetchAllTasks();
+    }).catch(function(error) {
+        alert('something broke');
+    });
+  }
+
